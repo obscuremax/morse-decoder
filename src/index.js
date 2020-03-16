@@ -38,7 +38,14 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let arr = []
+    let newArr = []
+
+    for (let i=0, j=10; i<expr.length; i=i+10, j=j+10) {
+        arr.push(expr.slice(i,j).replace(/[0]0/g, "").replace(/[1]0/g,".").replace(/[1]1/g,"-").replace(/\W{10}/g," "))
+    }
+    arr.forEach(el=> newArr.push(MORSE_TABLE[el] == undefined? " ":MORSE_TABLE[el]))
+    return newArr.join("")
 }
 
 module.exports = {
